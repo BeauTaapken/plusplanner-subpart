@@ -48,7 +48,7 @@ public class SubPartController {
         }
     }
 
-    @RequestMapping(path = "/delete/{subpartid}", method = RequestMethod.POST)
+    @RequestMapping(path = "/delete/{subpartid}")
     public void deleteSubPart(@PathVariable Long subpartid){
         repo.deleteById(subpartid);
     }

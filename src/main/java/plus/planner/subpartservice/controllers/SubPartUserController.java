@@ -22,12 +22,12 @@ public class SubPartUserController {
         mapper = new ObjectMapper();
     }
 
-    @RequestMapping(path = "/add/{subpartuser}", method = RequestMethod.POST)
+    @RequestMapping(path = "/add/{subpartuser}")
     public void addUserToSubPart(@PathVariable String subpartuser) throws IOException {
         repo.save(mapper.readValue(subpartuser, SubPartUser.class));
     }
 
-    @RequestMapping(path = "/delete/{subpartid}", method = RequestMethod.POST)
+    @RequestMapping(path = "/delete/{subpartid}")
     public void removeUserFromSubPart(@PathVariable Long subpartid){
         repo.deleteById(subpartid);
     }
