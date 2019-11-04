@@ -1,2 +1,2 @@
-# S3Proftaak
-Proftaak S3
+# Subpart
+https://travis-ci.com/BeauTaapken/plusplanner-subpart
