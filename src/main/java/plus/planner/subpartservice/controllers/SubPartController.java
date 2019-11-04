@@ -26,9 +26,7 @@ public class SubPartController {
 
     @RequestMapping(path = "/create/{subpart}")
     public void createSubPart(@PathVariable String subpart) {
-        System.out.println(subpart);
         try {
-            System.out.println(mapper.readValue(subpart, SubPart.class).getPartid());
             repo.save(mapper.readValue(subpart, SubPart.class));
         } catch (IOException e) {
             e.printStackTrace();
