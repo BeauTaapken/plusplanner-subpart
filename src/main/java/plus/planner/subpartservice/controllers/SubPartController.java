@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("SubPart")
+@RequestMapping("subpart")
 @RestController
 public class SubPartController {
     @Autowired
