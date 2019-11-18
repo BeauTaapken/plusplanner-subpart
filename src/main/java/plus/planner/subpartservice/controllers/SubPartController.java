@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @RestController
 public class SubPartController {
     @Autowired
-    SubPartRepository repo;
-    ObjectMapper mapper;
+    private SubPartRepository repo;
+    private ObjectMapper mapper;
 
     SubPartController(){
         mapper = new ObjectMapper();

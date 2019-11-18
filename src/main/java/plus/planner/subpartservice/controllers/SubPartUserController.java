@@ -14,8 +14,8 @@ import java.io.IOException;
 @RestController
 public class SubPartUserController {
     @Autowired
-    SubPartUserRepository repo;
-    ObjectMapper mapper;
+    private SubPartUserRepository repo;
+    private ObjectMapper mapper;
 
     SubPartUserController(){
         mapper = new ObjectMapper();
