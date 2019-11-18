@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import plus.planner.subpartservice.model.SubPart;
 import plus.planner.subpartservice.repository.SubPartRepository;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("SubPart")
+@RequestMapping("subpart")
 @RestController
 public class SubPartController {
     @Autowired
