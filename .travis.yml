@@ -15,8 +15,6 @@ services:
 
 env:
   - MAVEN_VERSION=3.3.9
-  global:
-  - image_name=BeauTaapken/plusplanner-subpart
   
 # before_install:
 # - docker pull carlad/sinatra
@@ -29,7 +27,7 @@ install:
   - "./mvnw --show-version --errors --batch-mode test-compile dependency:go-offline"
   
 before_script:
-- docker pull "$image_name" || true
+- docker pull "BeauTaapken/plusplanner-subpart" || true
   
 script: "./mvnw --show-version --errors --batch-mode -Prun-its clean verify"
 
@@ -47,11 +45,11 @@ after_script:
 # mvn install and mvn test get executed automatically since we have a .pom file
 
 before_deploy:
--docker tag "$image_name" "${image_name}:latest"
+-docker tag "BeauTaapken/plusplanner-subpart" "BeauTaapken/plusplanner-subpart:latest"
 
 deploy:
  provider: script
- script: docker push "${image_name}:latest"
+ script: docker push "BeauTaapken/plusplanner-subpart:latest"
  on:
   branch: master
 
