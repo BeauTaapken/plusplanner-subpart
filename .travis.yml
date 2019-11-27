@@ -45,7 +45,7 @@ after_script:
 # mvn install and mvn test get executed automatically since we have a .pom file
 
 before_deploy:
--docker tag "BeauTaapken/plusplanner-subpart" "BeauTaapken/plusplanner-subpart:latest"
+- docker tag "BeauTaapken/plusplanner-subpart" "BeauTaapken/plusplanner-subpart:latest"
 
 deploy:
  provider: script
