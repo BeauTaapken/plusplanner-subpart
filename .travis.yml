@@ -29,7 +29,7 @@ install:
 before_script:
 - docker pull "BeauTaapken/plusplanner-subpart" || true
   
-script: "./mvnw --show-version --errors --batch-mode -Prun-its clean verify"
+#script: "./mvnw --show-version --errors --batch-mode -Prun-its clean verify"
 
 after_script:
 - docker images
