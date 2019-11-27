@@ -27,7 +27,7 @@ install:
 #  - "./mvnw --show-version --errors --batch-mode test-compile dependency:go-offline"
   
 before_script:
-- docker pull "BeauTaapken/plusplanner-subpart" || true
+- docker pull "plusplanner-subpart" || true
   
 script: "./mvnw --show-version --errors --batch-mode -Prun-its clean verify -DskipTests=true"
 
@@ -45,11 +45,11 @@ after_script:
 # mvn install and mvn test get executed automatically since we have a .pom file
 
 before_deploy:
-- docker tag "BeauTaapken/plusplanner-subpart" "BeauTaapken/plusplanner-subpart:latest"
+- docker tag "plusplanner-subpart" "plusplanner-subpart:latest"
 
 deploy:
  provider: script
- script: docker push "BeauTaapken/plusplanner-subpart:latest"
+ script: docker push "plusplanner-subpart:latest"
  on:
   branch: master
 
