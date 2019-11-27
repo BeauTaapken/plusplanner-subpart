@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import plus.planner.subpartservice.model.SubPart;
 import plus.planner.subpartservice.repository.SubPartRepository;
@@ -17,8 +16,8 @@ import java.util.stream.Collectors;
 @RestController
 public class SubPartController {
     @Autowired
-    SubPartRepository repo;
-    ObjectMapper mapper;
+    private SubPartRepository repo;
+    private ObjectMapper mapper;
 
     SubPartController(){
         mapper = new ObjectMapper();

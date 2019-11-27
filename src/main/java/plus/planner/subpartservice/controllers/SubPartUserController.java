@@ -4,19 +4,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import plus.planner.subpartservice.model.SubPartUser;
 import plus.planner.subpartservice.repository.SubPartUserRepository;
 
 import java.io.IOException;
 
-@RequestMapping("SubPartUser")
+@RequestMapping("subpartuser")
 @RestController
 public class SubPartUserController {
     @Autowired
-    SubPartUserRepository repo;
-    ObjectMapper mapper;
+    private SubPartUserRepository repo;
+    private ObjectMapper mapper;
 
     SubPartUserController(){
         mapper = new ObjectMapper();
