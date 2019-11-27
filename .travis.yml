@@ -45,11 +45,11 @@ after_script:
 # mvn install and mvn test get executed automatically since we have a .pom file
 
 before_deploy:
-- docker tag "plusplanner-subpart" "plusplanner-subpart:latest"
+- docker tag "plusplanner-subpart" "dockerfile:latest"
 
 deploy:
  provider: script
- script: docker push "Dockerfile:latest"
+ script: docker push "dockerfile:latest"
  on:
   branch: master
 
