@@ -1,5 +1,5 @@
 # Set WORKDIR
-WORKDIR /
+# WORKDIR /
 # Open JDK:11
 FROM openjdk:11
 # copy WAR into image
