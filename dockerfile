@@ -1,4 +1,6 @@
-# Alpine Linux with OpenJDK JRE
+# Set WORKDIR
+WORKDIR /target
+# Open JDK:11
 FROM openjdk:11
 # copy WAR into image
 # COPY spring-boot-app-0.0.1-SNAPSHOT.war /app.war
