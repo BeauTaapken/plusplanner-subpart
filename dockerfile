@@ -10,6 +10,6 @@
 
 FROM openjdk:11-jdk
 VOLUME /tmp
-ARG JAR_FILE=*.jar
-COPY $target/*.jar app.jar
+# ARG JAR_FILE=*.jar
+# COPY $target/*.jar app.jar
 CMD ["/usr/bin/java", "-jar", "-Dspring.profiles.active=default", "plusplannerapi-0.0.1-SNAPSHOT.jar"]
