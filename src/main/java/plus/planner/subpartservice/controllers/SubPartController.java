@@ -10,7 +10,6 @@ import plus.planner.subpartservice.repository.SubPartRepository;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequestMapping("subpart")
 @RestController
@@ -34,8 +33,8 @@ public class SubPartController {
 
     @RequestMapping(path = "/read/{partid}")
     public List<SubPart> readSubPart(@PathVariable Long partid){
-        List<SubPart> subParts = repo.findAll();
-        return subParts.stream().filter(x -> x.getPartid() == partid).collect(Collectors.toList());
+        List<SubPart> subParts = repo.findByPartId(partid);
+        return subParts;
     }
 
     @RequestMapping(path = "/update/{subpart}")
