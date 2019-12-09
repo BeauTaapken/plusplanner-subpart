@@ -16,8 +16,8 @@ services:
 env:
   - MAVEN_VERSION=3.3.9
   
-# before_install:
-# - docker pull carlad/sinatra
+before_install:
+- docker build -t plusplanner/subpart .
 # - docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
 # - docker ps -a
 # - docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
@@ -27,7 +27,7 @@ install:
 #  - "./mvnw --show-version --errors --batch-mode test-compile dependency:go-offline"
   
 before_script:
-- docker pull "BeauTaapken/plusplanner-subpart" || true
+- docker pull "plusplanner/subpart" || true
   
 script: "./mvnw --show-version --errors --batch-mode -Prun-its clean verify -DskipTests=true"
 
@@ -44,16 +44,19 @@ after_script:
 # In our case it will be 'mvn install' followed by 'mvn test'
 # mvn install and mvn test get executed automatically since we have a .pom file
 
+# plusplanner-subpart
 before_deploy:
-- docker tag "BeauTaapken/plusplanner-subpart" "BeauTaapken/plusplanner-subpart:latest"
+- docker tag "plusplanner/subpart" "plusplanner/subpart:latest"
 
 deploy:
  provider: script
- script: docker push "BeauTaapken/plusplanner-subpart:latest"
+ script: docker push "plusplanner/subpart:latest"
  on:
   branch: master
 
 # This is to enable CodeCov's coverage
+#  - bash <(curl -s https://codecov.io/bash)
+
 # If a build is successful, the code is submitted for coverage analysis
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
@@ -65,4 +68,4 @@ after_failure:
   - ./send.sh failure $
  
 
-#  - bash <(curl -s https://codecov.io/bash)
+
