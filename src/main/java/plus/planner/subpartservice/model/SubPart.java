@@ -14,7 +14,7 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class SubPart {
     @Id
-    private Long subpartid;
+    private String subpartid;
     private Long partid;
     private String subpartname;
     private String description;
