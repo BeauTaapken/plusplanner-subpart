@@ -33,7 +33,7 @@ public class SubPartController {
     }
 
     @RequestMapping(path = "/read/{partid}")
-    public List<SubPart> readSubPart(@PathVariable Long partid){
+    public List<SubPart> readSubPart(@PathVariable String partid){
         List<SubPart> subParts = repo.findByPartId(partid);
         return subParts;
     }
@@ -48,7 +48,7 @@ public class SubPartController {
     }
 
     @RequestMapping(path = "/delete/{subpartid}")
-    public void deleteSubPart(@PathVariable Long subpartid){
+    public void deleteSubPart(@PathVariable String subpartid){
         repo.deleteById(subpartid);
     }
 }
