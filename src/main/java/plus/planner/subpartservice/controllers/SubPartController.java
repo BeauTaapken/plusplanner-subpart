@@ -3,6 +3,7 @@ package plus.planner.subpartservice.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import plus.planner.subpartservice.model.SubPart;
@@ -22,8 +23,8 @@ public class SubPartController {
         mapper = new ObjectMapper();
     }
 
-    @RequestMapping(path = "/create/{subpart}")
-    public void createSubPart(@PathVariable String subpart) {
+    @RequestMapping(path = "/create")
+    public void createSubPart(@RequestBody String subpart) {
         try {
             repo.save(mapper.readValue(subpart, SubPart.class));
         } catch (IOException e) {
@@ -37,8 +38,8 @@ public class SubPartController {
         return subParts;
     }
 
-    @RequestMapping(path = "/update/{subpart}")
-    public void updateSubPart(@PathVariable String subpart) {
+    @RequestMapping(path = "/update")
+    public void updateSubPart(@RequestBody String subpart) {
         try {
             repo.save(mapper.readValue(subpart, SubPart.class));
         } catch (IOException e) {
