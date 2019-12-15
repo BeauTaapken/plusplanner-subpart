@@ -14,7 +14,6 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class SubPart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long subpartid;
     private Long partid;
     private String subpartname;
