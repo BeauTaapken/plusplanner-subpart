@@ -33,7 +33,7 @@ public class SubPartController {
     }
 
     @RequestMapping(path = "/read/{partid}")
-    public List<SubPart> readSubPart(@PathVariable String partid){
+    public List<SubPart> readSubPart(@PathVariable Long partid){
         List<SubPart> subParts = repo.findByPartId(partid);
         return subParts;
     }
