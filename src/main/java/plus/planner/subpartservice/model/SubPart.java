@@ -15,9 +15,10 @@ import javax.persistence.*;
 public class SubPart {
     @Id
     private String subpartid;
-    private Long partid;
+    private String partid;
     private String subpartname;
     private String description;
-    private String state;
+    @Enumerated(EnumType.STRING)
+    private State state;
     private String enddate;
 }

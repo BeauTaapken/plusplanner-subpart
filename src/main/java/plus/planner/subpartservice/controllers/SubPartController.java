@@ -1,54 +1,51 @@
 package plus.planner.subpartservice.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import plus.planner.subpartservice.model.SubPart;
 import plus.planner.subpartservice.repository.SubPartRepository;
 
-import java.io.IOException;
 import java.util.List;
 
 @RequestMapping("subpart")
 @RestController
 public class SubPartController {
+    private final Logger logger = LoggerFactory.getLogger(SubPartController.class);
+    private final SubPartRepository repo;
+
     @Autowired
-    private SubPartRepository repo;
-    private ObjectMapper mapper;
-
-    SubPartController(){
-        mapper = new ObjectMapper();
+    public SubPartController(SubPartRepository repo) {
+        this.repo = repo;
     }
 
-    @RequestMapping(path = "/create")
-    public void createSubPart(@RequestBody String subpart) {
-        try {
-            repo.save(mapper.readValue(subpart, SubPart.class));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    public void createSubPart(@RequestBody SubPart subpart) {
+        logger.info("saving subpart: " + subpart.getSubpartid());
+        repo.save(subpart);
+        logger.info("saved subpart");
     }
 
-    @RequestMapping(path = "/read/{partid}")
-    public List<SubPart> readSubPart(@PathVariable Long partid){
-        List<SubPart> subParts = repo.findByPartId(partid);
+    @RequestMapping(path = "/read/{partid}", method = RequestMethod.GET)
+    public List<SubPart> readSubPart(@PathVariable String partid) {
+        logger.info("getting subparts for partid: "+ partid);
+        final List<SubPart> subParts = repo.findByPartId(partid);
+        logger.info("returning subparts");
         return subParts;
     }
 
-    @RequestMapping(path = "/update")
-    public void updateSubPart(@RequestBody String subpart) {
-        try {
-            repo.save(mapper.readValue(subpart, SubPart.class));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    public void updateSubPart(@RequestBody SubPart subpart) {
+        logger.info("updating subpart: " + subpart.getSubpartid());
+        repo.save(subpart);
+        logger.info("updated subpart");
     }
 
-    @RequestMapping(path = "/delete/{subpartid}")
-    public void deleteSubPart(@PathVariable String subpartid){
+    @RequestMapping(path = "/delete", method = RequestMethod.POST)
+    public void deleteSubPart(@RequestBody String subpartid) {
+        logger.info("deleting subpart: " + subpartid);
         repo.deleteById(subpartid);
+        logger.info("deleted subpart");
     }
 }
