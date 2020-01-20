@@ -9,7 +9,7 @@ import plus.planner.subpartservice.model.SubPart;
 import java.util.List;
 
 @Repository
-public interface SubPartRepository extends JpaRepository<SubPart, Long> {
+public interface SubPartRepository extends JpaRepository<SubPart, String> {
     @Query("SELECT s FROM SubPart s WHERE s.partid = :partid")
-    List<SubPart> findByPartId(@Param("partid") Long partid);
+    List<SubPart> findByPartId(@Param("partid") String partid);
 }

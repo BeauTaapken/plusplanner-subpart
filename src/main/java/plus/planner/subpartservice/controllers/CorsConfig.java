@@ -1,4 +1,4 @@
-package plus.planner.subpartservice.corsconfig;
+package plus.planner.subpartservice.controllers;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
