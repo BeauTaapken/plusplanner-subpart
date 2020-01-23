@@ -41,9 +41,10 @@ public class SubPartController {
     }
 
     @RequestMapping(path = "/update", method = RequestMethod.POST)
-    public void updateSubPart(@RequestBody SubPart subpart) {
-        logger.info("updating subpart: " + subpart.getSubpartid());
-        repo.save(subpart);
+    public void updateSubPart(@RequestBody String sbprt) throws IOException {
+        final SubPart subPart = objectMapper.readValue(sbprt, SubPart.class);
+        logger.info("updating subpart: " + subPart.getSubpartid());
+        repo.save(subPart);
         logger.info("updated subpart");
     }
 
