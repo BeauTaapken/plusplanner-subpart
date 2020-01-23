@@ -1,5 +1,6 @@
 package plus.planner.subpartservice.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import plus.planner.subpartservice.model.SubPart;
 import plus.planner.subpartservice.repository.SubPartRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequestMapping("subpart")
@@ -14,16 +16,19 @@ import java.util.List;
 public class SubPartController {
     private final Logger logger = LoggerFactory.getLogger(SubPartController.class);
     private final SubPartRepository repo;
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public SubPartController(SubPartRepository repo) {
+    public SubPartController(SubPartRepository repo, ObjectMapper objectMapper) {
         this.repo = repo;
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public void createSubPart(@RequestBody SubPart subpart) {
-        logger.info("saving subpart: " + subpart.getSubpartid());
-        repo.save(subpart);
+    public void createSubPart(@RequestBody String sbprt) throws IOException {
+        final SubPart subPart = objectMapper.readValue(sbprt, SubPart.class);
+        logger.info("saving subpart: " + subPart.getSubpartid());
+        repo.save(subPart);
         logger.info("saved subpart");
     }
 
