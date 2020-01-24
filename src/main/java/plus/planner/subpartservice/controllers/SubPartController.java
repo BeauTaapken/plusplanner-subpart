@@ -11,6 +11,7 @@ import plus.planner.subpartservice.repository.SubPartRepository;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin
 @RequestMapping("subpart")
 @RestController
 public class SubPartController {
@@ -24,33 +25,33 @@ public class SubPartController {
         this.objectMapper = objectMapper;
     }
 
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    @PostMapping(path = "/create")
     public void createSubPart(@RequestBody String sbprt) throws IOException {
         final SubPart subPart = objectMapper.readValue(sbprt, SubPart.class);
-        logger.info("saving subpart: " + subPart.getSubpartid());
+        logger.info("saving subpart: {}", subPart.getSubpartid());
         repo.save(subPart);
         logger.info("saved subpart");
     }
 
-    @RequestMapping(path = "/read/{partid}", method = RequestMethod.GET)
+    @GetMapping(path = "/read/{partid}")
     public List<SubPart> readSubPart(@PathVariable String partid) {
-        logger.info("getting subparts for partid: "+ partid);
+        logger.info("getting subparts for partid: {}", partid);
         final List<SubPart> subParts = repo.findByPartId(partid);
         logger.info("returning subparts");
         return subParts;
     }
 
-    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    @PostMapping(path = "/update")
     public void updateSubPart(@RequestBody String sbprt) throws IOException {
         final SubPart subPart = objectMapper.readValue(sbprt, SubPart.class);
-        logger.info("updating subpart: " + subPart.getSubpartid());
+        logger.info("updating subpart: {}", subPart.getSubpartid());
         repo.save(subPart);
         logger.info("updated subpart");
     }
 
-    @RequestMapping(path = "/delete", method = RequestMethod.POST)
+    @PostMapping(path = "/delete")
     public void deleteSubPart(@RequestBody String subpartid) {
-        logger.info("deleting subpart: " + subpartid);
+        logger.info("deleting subpart: {}", subpartid);
         repo.deleteById(subpartid);
         logger.info("deleted subpart");
     }
